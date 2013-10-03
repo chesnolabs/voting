@@ -35,19 +35,19 @@ arr = []
 kods.each do |kod|
   agent = Mechanize.new
   page = agent.get("http://w1.c1.rada.gov.ua/pls/radan_gs09/ns_dep_gol_list_print?startDate="+date1+"&endDate="+date2+"&kod="+kod.to_s)
-  arr[0] = page.search('tr')[1].text.strip.split(/\n/)[0] #name
+  arr[0] = page.search('tr')[1].text.strip.split(/\n/)[0] 
   n = page.search('tr').length-1
   arr2 = *(4..n)
   for i in arr2 
 
     if page.search('tr')[i].children.size == 6
-      arr[1] = page.search('tr')[i].children.children[0].text #номер
-      arr[2] = page.search('tr')[i].children.children[1].text.strip.gsub(/\n/, "") #назва
-      arr[3] = page.search('tr')[i].children.children[2].text.strip #голосування
+      arr[1] = page.search('tr')[i].children.children[0].text 
+      arr[2] = page.search('tr')[i].children.children[1].text.strip.gsub(/\n/, "")
+      arr[3] = page.search('tr')[i].children.children[2].text.strip 
       arr[4] = page.search('tr')[i+1].text.split(/\n/)[1].match(/\d.*/).to_s
       arr[5] = page.search('tr')[i+1].text.split(/\n/)[2].match(/За-\d*/).to_s
       if page.search('tr')[i-1].text.match(/\A\d{2}\.\d{2}.\d{4}\z/)
-        arr[6] = page.search('tr')[i-1].text.match(/\A\d{2}\.\d{2}.\d{4}\z/)   
+        arr[6] = page.search('tr')[i-1].text   
       end
       CSV.open("#{date1}_#{date2}_votes.csv", "ab", {:col_sep => "\t"}) do |data|
         data << arr
