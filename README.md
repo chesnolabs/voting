@@ -26,8 +26,10 @@ Linux (Debian-based systems: Ubuntu, Mint...)
 
 2. Відкрити термінал в папці, де зберігаються скрипти. 
 Команди для запуску скриптів:
-    ruby vote.rb
-    ruby fra.rb
+
+        ruby vote.rb
+        ruby fra.rb
+
 3. Виконати інструкції, які з’являться в консолі
 4. Profit!
 
