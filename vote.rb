@@ -1,4 +1,4 @@
-# encoding: utf-8
+﻿# encoding: utf-8
 
 require 'mechanize'
 require 'csv'
@@ -28,26 +28,26 @@ puts "Зараз відбудеться збір даних про голосу�
 Якщо воно вам заважає, перекиньте його на інший воркспейс."
 sleep 1
 
-kodsall = *(2..455)
-kods = kodsall.delete_if { |ko| [397, 230, 287, 220, 231, 228, 309, 265, 222].include? ko }
+kodsall = *(2..483)
+kods = kodsall.delete_if { |ko| [397, 230, 287, 220, 231, 228, 309, 265, 222, 313, 332, 418, 327, 312, 132, 440, 422, 356, 310, 341, 336, 435, 84, 427, 292, 462, 466].include? ko }
 arr = []
 
 kods.each do |kod|
   agent = Mechanize.new
   page = agent.get("http://w1.c1.rada.gov.ua/pls/radan_gs09/ns_dep_gol_list_print?startDate="+date1+"&endDate="+date2+"&kod="+kod.to_s)
-  arr[0] = page.search('tr')[1].text.strip.split(/\n/)[0] 
+  arr[0] = page.search('tr')[1].text.strip.split(/\n/)[0] #name
   n = page.search('tr').length-1
   arr2 = *(4..n)
   for i in arr2 
 
     if page.search('tr')[i].children.size == 6
-      arr[1] = page.search('tr')[i].children.children[0].text 
-      arr[2] = page.search('tr')[i].children.children[1].text.strip.gsub(/\n/, "")
-      arr[3] = page.search('tr')[i].children.children[2].text.strip 
+      arr[1] = page.search('tr')[i].children.children[0].text #номер
+      arr[2] = page.search('tr')[i].children.children[1].text.strip.gsub(/\n/, "") #назва
+      arr[3] = page.search('tr')[i].children.children[2].text.strip #голосування
       arr[4] = page.search('tr')[i+1].text.split(/\n/)[1].match(/\d.*/).to_s
       arr[5] = page.search('tr')[i+1].text.split(/\n/)[2].match(/За-\d*/).to_s
       if page.search('tr')[i-1].text.match(/\A\d{2}\.\d{2}.\d{4}\z/)
-        arr[6] = page.search('tr')[i-1].text   
+        arr[6] = page.search('tr')[i-1].text.match(/\A\d{2}\.\d{2}.\d{4}\z/)   
       end
       CSV.open("#{date1}_#{date2}_votes.csv", "ab", {:col_sep => "\t"}) do |data|
         data << arr
