@@ -6,7 +6,9 @@
 Requirements:
 -------------
 gem mechanize -v 2.7.3
+
 gem nokogiri -v 1.6.2.1
+
 gem json
 
 Скрипт залежить від файлів dates.json і deputies_ids.csv. Не переміщайте і не змінюйте їх
