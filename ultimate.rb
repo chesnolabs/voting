@@ -4,6 +4,14 @@ require 'mechanize'
 require 'csv'
 require 'json'
 
+def validate_presence (date)
+  if date.nil?
+    puts "При запуску треба ввести дві дати у форматі dd.mm.yyyy"
+    abort
+  end
+end
+
+
 def validate_format(date)
   begin
     Date.strptime(date,"%d.%m.%Y")
@@ -27,9 +35,12 @@ def validate_sequence(a,b)
   
 end
 
-Date.strptime("12.12.2012","%d.%m.%Y")
+
 date1=ARGV[0]
 date2=ARGV[1]
+
+validate_presence(date1)
+validate_presence(date2)
 
 a = validate_format(date1)
 b = validate_format(date2)
