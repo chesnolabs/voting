@@ -173,7 +173,7 @@ kods.each do |id|
   CSV.open("#{date1}_#{date2}_ids.csv", "ab", {:col_sep => "\t"}) do |data|
     data << noms
   end
-     
+  
   voting.gangs.each do |gang|
     GANGS.keys.each do |key|
       if gang.first.text.match(key)
@@ -188,9 +188,14 @@ kods.each do |id|
         CSV.open("#{date1}_#{date2}_frakciji.csv", "ab") do |data|
           data << fraks
         end
+        if fra_id == 8
+          bag_of_dicks << ["Тимошенко Ю.В.", "26674"]
+        elsif fra_id == 2
+          bag_of_dicks << ["Тимошенко Ю.В.", "22705"]
+        end
         gang.each do |row|
           arow = row.text.gsub(/\n/,',').split(',')
-          bag_of_dicks.each do |dick|
+          bag_of_dicks.each_with_index do |dick, index|
             if dick.include?(arow[1])
               nards[0] = thisid
               nards[1] = dick[1]
@@ -214,8 +219,12 @@ kods.each do |id|
       end
     end
   end
-  puts id  
+  puts id
+  
+  2.times { bag_of_dicks.pop }
+  
   sleep 2
+  
   rescue
     next
   end
