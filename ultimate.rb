@@ -174,6 +174,8 @@ kods.each do |id|
     data << noms
   end
   
+  2.times { bag_of_dicks.pop }
+  
   voting.gangs.each do |gang|
     GANGS.keys.each do |key|
       if gang.first.text.match(key)
@@ -221,7 +223,7 @@ kods.each do |id|
   end
   puts id
   
-  2.times { bag_of_dicks.pop }
+  
   
   sleep 2
   
