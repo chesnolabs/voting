@@ -174,7 +174,7 @@ kods.each do |id|
     data << noms
   end
   
-  2.times { bag_of_dicks.pop }
+  bag_of_dicks.pop until bag_of_dicks.size==429
   
   voting.gangs.each do |gang|
     GANGS.keys.each do |key|
@@ -190,6 +190,7 @@ kods.each do |id|
         CSV.open("#{date1}_#{date2}_frakciji.csv", "ab") do |data|
           data << fraks
         end
+        bag_of_dicks.pop unless bag_of_dicks.size==429
         if fra_id == 8
           bag_of_dicks << ["Тимошенко Ю.В.", "26674"]
         elsif fra_id == 2
@@ -222,8 +223,6 @@ kods.each do |id|
     end
   end
   puts id
-  
-  
   
   sleep 2
   
