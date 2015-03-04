@@ -192,7 +192,7 @@ kods.each do |id|
         CSV.open("#{date1}_#{date2}_frakciji.csv", "ab") do |data|
           data << fraks
         end
-        bag_of_dicks.pop unless bag_of_dicks.size==BAG_SIZE
+        bag_of_dicks.pop unless bag_of_dicks.size == BAG_SIZE
         if fra_id == 8
           bag_of_dicks << ["Тимошенко Ю.В.", "26674"]
         elsif fra_id == 2
