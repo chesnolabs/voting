@@ -176,7 +176,7 @@ kods.each do |id|
     data << noms
   end
   
-  bag_of_dicks.pop until bag_of_dicks.size==429
+  bag_of_dicks.pop until bag_of_dicks.size==BAG_SIZE
   
   voting.gangs.each do |gang|
     GANGS.keys.each do |key|
@@ -204,7 +204,6 @@ kods.each do |id|
             if dick.include?(arow[1])
               nards[0] = thisid
               nards[1] = dick[1]
-              puts nards[1].to_s + " dep"
               nards[2] = arow[2]
               nards[3] = fra_id
               CSV.open("#{date1}_#{date2}_MPs.csv", "ab") do |data|
