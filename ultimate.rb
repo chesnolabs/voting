@@ -4,7 +4,7 @@ require 'mechanize'
 require 'csv'
 require 'json'
 
-BAG_SIZE=432
+BAG_SIZE=460
 
 class Validator
 
@@ -86,7 +86,7 @@ class Voting
 end
 
 GANGS = {"ПОРОШЕНКА" => 1, "ФРОНТ" => 2, "Опозиційний"=> 3, "Позафракційні" => 4, "САМОПОМІЧ" => 5, 
-"Ляшка"=> 6, "Воля" => 7, "Батьківщина" => 8, "розвиток" => 9}
+"Ляшка"=> 6, "Воля" => 7, "Батьківщина" => 8, "розвиток" => 9, "Відродження" => 10}
 
 date1=ARGV[0]
 date2=ARGV[1]
@@ -124,7 +124,7 @@ nards = []
 noms = []
 
 bag_of_dicks = []
-CSV.foreach("deputies_ids.csv") {|row| bag_of_dicks << row}
+CSV.foreach("dep_ids.csv") {|row| bag_of_dicks << row}
 
 CSV.open("#{date1}_#{date2}_MPs.csv", "ab") do |data|
   header = Array.new
